@@ -2806,3 +2806,35 @@ ul {
     gap: 1rem;
   }
 }
+/* ============================================ CART Z-INDEX FIX ============================================ */
+.cart-sidebar {
+  z-index: 9999 !important;
+}
+
+.cart-overlay {
+  z-index: 9998 !important;
+}
+
+.cart-header {
+  position: relative;
+  z-index: 10;
+}
+
+.cart-close {
+  position: relative;
+  z-index: 100;
+}
+
+/* Push nav elements behind cart */
+.navbar {
+  z-index: 997 !important;
+}
+
+.mobile-toggle {
+  z-index: 996 !important;
+}
+
+.btn-nav {
+  position: relative;
+  z-index: 1;
+}

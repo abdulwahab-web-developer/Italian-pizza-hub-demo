@@ -197,75 +197,34 @@
   function initCart() {
     if (!els.cartToggle || !els.cartSidebar) return;
 
-    function openCart() {
-      state.isCartOpen = true;
-      els.cartOverlay.classList.add('active');
-      els.cartSidebar.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
     function closeCart() {
-      state.isCartOpen = false;
-      els.cartOverlay.classList.remove('active');
-      els.cartSidebar.classList.remove('active');
-      document.body.style.overflow = '';
+        els.cartOverlay.classList.remove('active');
+        els.cartSidebar.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
-    // Open cart
-    els.cartToggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      openCart();
-    });
-
-    // Close cart — multiple ways
-    if (els.cartClose) {
-      els.cartClose.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeCart();
-      });
+    function openCart() {
+        els.cartOverlay.classList.add('active');
+        els.cartSidebar.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    if (els.cartOverlay) {
-      els.cartOverlay.addEventListener('click', function(e) {
-        if (e.target === els.cartOverlay) closeCart();
-      });
-    }
-
-    if (els.btnContinue) {
-      els.btnContinue.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeCart();
-      });
-    }
-
-    // Escape key
+    els.cartToggle.addEventListener('click', openCart);
+    
+    // Close with X button
+    els.cartClose.onclick = closeCart;
+    
+    // Close with overlay click
+    els.cartOverlay.onclick = closeCart;
+    
+    // Close with continue button
+    if (els.btnContinue) els.btnContinue.onclick = closeCart;
+    
+    // Close with Escape
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && state.isCartOpen) closeCart();
+        if (e.key === 'Escape') closeCart();
     });
-
-    // Add to cart
-    document.addEventListener('click', function(e) {
-      const btn = e.target.closest('.btn-add-cart');
-      if (!btn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const name = btn.dataset.name;
-      const price = parseFloat(btn.dataset.price);
-      if (!name || isNaN(price)) return;
-
-      const existing = state.cart.find(item => item.name === name);
-      if (existing) { existing.qty++; }
-      else { state.cart.push({ name, price, qty: 1 }); }
-      updateCartUI();
-      showToast(name + ' added to cart');
-
-      if (els.cartBadge) {
-        els.cartBadge.style.transform = 'scale(1.3)';
-        setTimeout(function() { els.cartBadge.style.transform = ''; }, 200);
-      }
-    });
-  }
+}
 
   function updateCartUI() {
     if (!els.cartItems || !els.cartBadge) return;

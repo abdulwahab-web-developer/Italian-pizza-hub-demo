@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -161,79 +162,95 @@
     </div>
     <div class="dishes-scroll-wrapper">
     
-    <!-- Scroll Hint — visible only on mobile -->
-    <div class="scroll-hint">
-        <span class="scroll-hint-tag">
-            Swipe for more
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-    </div>
-    
-    <div class="dishes-scroll-wrapper">
+        <!-- Scroll Hint — visible only on mobile -->
+        <div class="scroll-hint">
+            <span class="scroll-hint-tag">
+                Swipe for more
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+        </div>
+        
         <button class="scroll-btn prev" id="dishesPrev" aria-label="Previous dishes">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         </button>
         <div class="dishes-scroll" id="dishesScroll">
-            <article class="dish-card" data-dish="margherita">
-                <div class="dish-stars">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <div class="dish-image"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza Margherita" loading="lazy"></div>
-                <div class="dish-info">
-                    <h3 class="dish-name">Pizza Margherita</h3>
-                    <p class="dish-desc">Classic delight with fresh basil &amp; mozzarella.</p>
-                    <div class="dish-footer"><span class="dish-price">&pound;10.99</span><button class="btn-add-cart" data-name="Pizza Margherita" data-price="10.99">Add to Cart</button></div>
-                </div>
-            </article>
-            <article class="dish-card" data-dish="carbonara">
-                <div class="dish-stars">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <div class="dish-image"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" alt="Carbonara Pasta" loading="lazy"></div>
-                <div class="dish-info">
-                    <h3 class="dish-name">Carbonara Pasta</h3>
-                    <p class="dish-desc">Creamy parmesan sauce with pancetta.</p>
-                    <div class="dish-footer"><span class="dish-price">&pound;13.99</span><button class="btn-add-cart" data-name="Carbonara Pasta" data-price="13.99">Add to Cart</button></div>
-                </div>
-            </article>
-            <article class="dish-card" data-dish="carbonara">
-                <div class="dish-stars">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <div class="dish-image"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" alt="Carbonara Pasta" loading="lazy"></div>
-                <div class="dish-info">
-                    <h3 class="dish-name">Carbonara Pasta</h3>
-                    <p class="dish-desc">Creamy parmesan sauce with pancetta.</p>
-                    <div class="dish-footer"><span class="dish-price">&pound;13.99</span><button class="btn-add-cart" data-name="Carbonara Pasta" data-price="13.99">Add to Cart</button></div>
-                </div>
-            </article>
-            <article class="dish-card" data-dish="mixgrill">
-                <div class="dish-stars">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <div class="dish-image"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="Mix Grill" loading="lazy"></div>
-                <div class="dish-info">
-                    <h3 class="dish-name">Mix Grill</h3>
-                    <p class="dish-desc">A perfect mix of our best grilled meats.</p>
-                    <div class="dish-footer"><span class="dish-price">&pound;15.99</span><button class="btn-add-cart" data-name="Mix Grill" data-price="15.99">Add to Cart</button></div>
-                </div>
-            </article>
+            
+            <!-- Card 1: Pizza Margherita -->
+            <a href="menu.html" class="dish-card-link">
+                <article class="dish-card" data-dish="margherita">
+                    <div class="dish-stars">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div class="dish-image"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza Margherita" loading="lazy"></div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Pizza Margherita</h3>
+                        <p class="dish-desc">Classic delight with fresh basil &amp; mozzarella.</p>
+                        <div class="dish-footer"><span class="dish-price">&pound;10.99</span><button class="btn-add-cart" data-name="Pizza Margherita" data-price="10.99">Add to Cart</button></div>
+                    </div>
+                </article>
+            </a>
+            
+            <!-- Card 2: Carbonara Pasta -->
+            <a href="menu.html" class="dish-card-link">
+                <article class="dish-card" data-dish="carbonara">
+                    <div class="dish-stars">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div class="dish-image"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" alt="Carbonara Pasta" loading="lazy"></div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Carbonara Pasta</h3>
+                        <p class="dish-desc">Creamy parmesan sauce with pancetta.</p>
+                        <div class="dish-footer"><span class="dish-price">&pound;13.99</span><button class="btn-add-cart" data-name="Carbonara Pasta" data-price="13.99">Add to Cart</button></div>
+                    </div>
+                </article>
+            </a>
+            
+            <!-- Card 3: Chicken Kebab -->
+            <a href="menu.html" class="dish-card-link">
+                <article class="dish-card" data-dish="kebab">
+                    <div class="dish-stars">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div class="dish-image"><img src="https://images.unsplash.com/photo-1561651823-34a0658ebc9d?w=400&q=80" alt="Chicken Kebab" loading="lazy"></div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Chicken Kebab</h3>
+                        <p class="dish-desc">Juicy grilled chicken with herbs &amp; spices.</p>
+                        <div class="dish-footer"><span class="dish-price">&pound;9.50</span><button class="btn-add-cart" data-name="Chicken Kebab" data-price="9.50">Add to Cart</button></div>
+                    </div>
+                </article>
+            </a>
+            
+            <!-- Card 4: Mix Grill -->
+            <a href="menu.html" class="dish-card-link">
+                <article class="dish-card" data-dish="mixgrill">
+                    <div class="dish-stars">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div class="dish-image"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="Mix Grill" loading="lazy"></div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Mix Grill</h3>
+                        <p class="dish-desc">A perfect mix of our best grilled meats.</p>
+                        <div class="dish-footer"><span class="dish-price">&pound;15.99</span><button class="btn-add-cart" data-name="Mix Grill" data-price="15.99">Add to Cart</button></div>
+                    </div>
+                </article>
+            </a>
+            
         </div>
         <button class="scroll-btn next" id="dishesNext" aria-label="Next dishes">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -270,15 +287,15 @@
             <h2 class="section-title">Choose Your Favourite <em>Category</em></h2>
         </div>
         <div class="categories-grid">
-            <a href="#" class="category-card active" data-category="all">
+            <a href="menu.html" class="category-card active" data-category="all">
                 <div class="category-image"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=80" alt="All"></div>
                 <span class="category-name">All</span><span class="category-count">69 Items</span>
             </a>
-            <a href="#" class="category-card" data-category="pizza">
+            <a href="menu.html" class="category-card" data-category="pizza">
                 <div class="category-image"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=80" alt="Pizza"></div>
                 <span class="category-name">Pizza</span><span class="category-count">12 Items</span>
             </a>
-            <a href="#" class="category-card" data-category="kebab">
+            <a href="menu.html" class="category-card" data-category="kebab">
                 <div class="category-image"><img src="https://images.unsplash.com/photo-1561651823-34a0658ebc9d?w=300&q=80" alt="Kebab"></div>
                 <span class="category-name">Kebab</span><span class="category-count">8 Items</span>
             </a>
@@ -455,8 +472,28 @@
                     <div class="delivery-feature"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Real-time tracking</span></div>
                 </div>
             </div>
-            <div class="delivery-image"><img src="https://images.unsplash.com/photo-1526367790999-015075668a5a?w=600&q=80" alt="Delivery" loading="lazy"></div>
+           <div class="delivery-image">
+    <div class="delivery-illustration">
+        <div class="delivery-circle">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.2c-.5-.4-1.2-.4-1.7 0-1 .8-2.2 2.2-2.2 2.2s-2.7.6-4.5 1.1C4.7 11.3 4 12.1 4 13v3c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/>
+                <circle cx="17" cy="17" r="2"/>
+                <path d="M7 17h10"/>
+            </svg>
         </div>
+        <div class="delivery-line"></div>
+        <div class="delivery-info">
+            <span class="delivery-time">25-35 min</span>
+            <span class="delivery-label">Express Delivery</span>
+        </div>
+        <div class="delivery-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+</div>
     </div>
 </section>
 

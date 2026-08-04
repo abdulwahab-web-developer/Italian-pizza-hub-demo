@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Pizza Hub | Kebab & Pasta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Promo Bar -->
+<div class="promo-bar" id="promoBar">
+    <span>Free Delivery on Orders Over &pound;20</span>
+    <span class="promo-divider">|</span>
+    <span>Order Now and Get 10% OFF</span>
+    <button class="promo-close" id="promoClose" aria-label="Close promo bar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+</div>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-content">
+      <div class="loading-logo">
+          <span class="logo-main">Italian</span>
+          <span class="logo-sub">Pizza Hub</span>
+      </div>
+      <div class="loading-bar-container">
+          <div class="loading-bar" id="loadingBar"></div>
+      </div>
+      <p class="loading-text">Preparing your experience</p>
+      <p class="loading-credit">Presented by <span>Wahab</span></p>
+  </div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-follower" id="customCursorFollower"></div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Cart Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button class="cart-close" id="cartClose" aria-label="Close cart">
+            <span></span><span></span>
+        </button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <p>Your cart is empty</p>
+        <span>Add some delicious dishes</span>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+        <div class="cart-summary">
+            <div class="cart-summary-row"><span>Subtotal</span><span id="cartSubtotal">&pound;0.00</span></div>
+            <div class="cart-summary-row"><span>Delivery Fee</span><span id="cartDelivery">&pound;2.50</span></div>
+            <div class="cart-summary-row total"><span>Total</span><span class="cart-total-price" id="cartTotalPrice">&pound;2.50</span></div>
+        </div>
+        <button class="btn-checkout">Proceed to Checkout</button>
+        <button class="btn-continue" id="btnContinue">Continue Shopping</button>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#hero" class="nav-logo">
+            <span class="logo-italian">Italian</span>
+            <span class="logo-hub">Pizza Hub</span>
+            <span class="logo-tag">Kebab & Pasta</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <div class="mobile-nav-header">
+                <a href="#hero" class="nav-logo mobile"><span class="logo-italian">Italian</span><span class="logo-hub">Pizza Hub</span></a>
+                <button class="mobile-close" id="mobileClose" aria-label="Close menu"><span></span><span></span></button>
+            </div>
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#about" class="nav-link">About Us</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <div class="mobile-nav-footer">
+                <a href="tel:+442012345678" class="mobile-phone">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span>+44 (0)20 1234 5678</span>
+                </a>
+                <p class="mobile-hours">Mon - Sun: 11:00 AM - 11:00 PM</p>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <a href="tel:+442012345678" class="nav-phone" aria-label="Call us">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </a>
+            <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <a href="menu.html" class="btn-nav">Order Online</a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg">
+        <div class="hero-bg-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1920&q=80" alt="Delicious pizza" class="hero-bg-img" id="heroBgImg">
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title" id="heroTitle">
+            <span class="title-line">Authentic</span>
+            <span class="title-line accent">Italian</span>
+            <span class="title-line">Flavours</span>
+        </h1>
+        <p class="hero-desc" id="heroDesc">Fresh Pizza. Flame-Grilled Kebabs. Homemade Pasta.</p>
+        <div class="hero-buttons" id="heroButtons">
+            <a href="menu.html" class="btn-primary"><span>Order Online</span></a>
+            <a href="menu.html" class="btn-secondary"><span>Explore Menu</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="hero-rating" id="heroRating">
+            <div class="rating-avatars">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Customer">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Customer">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Customer">
+            </div>
+            <div class="rating-stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="rating-text"><span class="rating-score">4.9</span><span class="rating-count">(2300+ Reviews)</span></div>
+        </div>
+    </div>
+    <div class="hero-scroll" id="heroScroll">
+        <svg class="scroll-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+</section>
+
+<!-- Popular Dishes -->
+<section class="popular" id="popular">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Our Popular Dishes</span>
+            <h2 class="section-title">Made With Love, <em>Served With Passion</em></h2>
+        </div>
+    </div>
+    <div class="dishes-scroll-wrapper">
+    
+    <!-- Scroll Hint — visible only on mobile -->
+    <div class="scroll-hint">
+        <span class="scroll-hint-tag">
+            Swipe for more
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+    </div>
+    
+    <div class="dishes-scroll-wrapper">
+        <button class="scroll-btn prev" id="dishesPrev" aria-label="Previous dishes">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="dishes-scroll" id="dishesScroll">
+            <article class="dish-card" data-dish="margherita">
+                <div class="dish-stars">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="dish-image"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza Margherita" loading="lazy"></div>
+                <div class="dish-info">
+                    <h3 class="dish-name">Pizza Margherita</h3>
+                    <p class="dish-desc">Classic delight with fresh basil &amp; mozzarella.</p>
+                    <div class="dish-footer"><span class="dish-price">&pound;10.99</span><button class="btn-add-cart" data-name="Pizza Margherita" data-price="10.99">Add to Cart</button></div>
+                </div>
+            </article>
+            <article class="dish-card" data-dish="carbonara">
+                <div class="dish-stars">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="dish-image"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" alt="Carbonara Pasta" loading="lazy"></div>
+                <div class="dish-info">
+                    <h3 class="dish-name">Carbonara Pasta</h3>
+                    <p class="dish-desc">Creamy parmesan sauce with pancetta.</p>
+                    <div class="dish-footer"><span class="dish-price">&pound;13.99</span><button class="btn-add-cart" data-name="Carbonara Pasta" data-price="13.99">Add to Cart</button></div>
+                </div>
+            </article>
+            <article class="dish-card" data-dish="carbonara">
+                <div class="dish-stars">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="dish-image"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" alt="Carbonara Pasta" loading="lazy"></div>
+                <div class="dish-info">
+                    <h3 class="dish-name">Carbonara Pasta</h3>
+                    <p class="dish-desc">Creamy parmesan sauce with pancetta.</p>
+                    <div class="dish-footer"><span class="dish-price">&pound;13.99</span><button class="btn-add-cart" data-name="Carbonara Pasta" data-price="13.99">Add to Cart</button></div>
+                </div>
+            </article>
+            <article class="dish-card" data-dish="mixgrill">
+                <div class="dish-stars">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="dish-image"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="Mix Grill" loading="lazy"></div>
+                <div class="dish-info">
+                    <h3 class="dish-name">Mix Grill</h3>
+                    <p class="dish-desc">A perfect mix of our best grilled meats.</p>
+                    <div class="dish-footer"><span class="dish-price">&pound;15.99</span><button class="btn-add-cart" data-name="Mix Grill" data-price="15.99">Add to Cart</button></div>
+                </div>
+            </article>
+        </div>
+        <button class="scroll-btn next" id="dishesNext" aria-label="Next dishes">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80" alt="Chef preparing pizza" loading="lazy"></div>
+            <div class="about-content">
+                <div class="section-header left">
+                    <span class="section-label">About Us</span>
+                    <h2 class="section-title">Bringing Italy To Your <em>Plate</em></h2>
+                </div>
+                <p class="about-text">At Italian Pizza Hub, Kebab &amp; Pasta, we combine authentic Italian recipes with fresh ingredients to create unforgettable flavours. From stone-baked pizzas to flame-grilled kebabs and homemade pasta, every dish is made with love.</p>
+                <div class="about-stats">
+                    <div class="stat"><div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="stat-value">10+</span><span class="stat-label">Years Experience</span></div>
+                    <div class="stat"><div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><span class="stat-value">Fresh</span><span class="stat-label">Quality Ingredients</span></div>
+                    <div class="stat"><div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="stat-value">100%</span><span class="stat-label">Halal Certified</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Menu Categories -->
+<section class="menu-categories" id="menu">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Explore Our Menu</span>
+            <h2 class="section-title">Choose Your Favourite <em>Category</em></h2>
+        </div>
+        <div class="categories-grid">
+            <a href="#" class="category-card active" data-category="all">
+                <div class="category-image"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=80" alt="All"></div>
+                <span class="category-name">All</span><span class="category-count">69 Items</span>
+            </a>
+            <a href="#" class="category-card" data-category="pizza">
+                <div class="category-image"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=80" alt="Pizza"></div>
+                <span class="category-name">Pizza</span><span class="category-count">12 Items</span>
+            </a>
+            <a href="#" class="category-card" data-category="kebab">
+                <div class="category-image"><img src="https://images.unsplash.com/photo-1561651823-34a0658ebc9d?w=300&q=80" alt="Kebab"></div>
+                <span class="category-name">Kebab</span><span class="category-count">8 Items</span>
+            </a>
+            <a href="menu.html" class="category-card" data-category="pasta">
+                <div class="category-image"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=300&q=80" alt="Pasta"></div>
+                <span class="category-name">Pasta</span><span class="category-count">15 Items</span>
+            </a>
+            <a href="menu.html" class="category-card" data-category="sides">
+                <div class="category-image"><img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=300&q=80" alt="Sides"></div>
+                <span class="category-name">Sides</span><span class="category-count">10 Items</span>
+            </a>
+            <a href="menu.html" class="category-card" data-category="drinks">
+                <div class="category-image"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=300&q=80" alt="Drinks"></div>
+                <span class="category-name">Drinks</span><span class="category-count">24 Items</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Full Menu -->
+<section class="full-menu" id="fullMenu">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Our Menu</span>
+            <h2 class="section-title">Delicious Choices <em>For You</em></h2>
+        </div>
+        <div class="menu-tabs" id="menuTabs">
+            <button class="menu-tab active" data-tab="all">All</button>
+            <button class="menu-tab" data-tab="pizza">Pizza</button>
+            <button class="menu-tab" data-tab="kebab">Kebab</button>
+            <button class="menu-tab" data-tab="pasta">Pasta</button>
+            <button class="menu-tab" data-tab="sides">Sides</button>
+            <button class="menu-tab" data-tab="drinks">Drinks</button>
+        </div>
+        <div class="menu-list" id="menuList">
+            <div class="menu-item" data-category="pizza">
+                <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=200&q=80" alt="Pizza Margherita"></div>
+                <div class="menu-item-info"><h4>Pizza Margherita</h4><p>Classic pizza with tomato sauce, mozzarella &amp; basil.</p></div>
+                <div class="menu-item-price">&pound;10.99</div>
+                <button class="btn-add-cart" data-name="Pizza Margherita" data-price="10.99">Add</button>
+            </div>
+            <div class="menu-item" data-category="pizza">
+                <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&q=80" alt="Pepperoni Pizza"></div>
+                <div class="menu-item-info"><h4>Pepperoni Pizza</h4><p>Pepperoni, mozzarella and our special sauce.</p></div>
+                <div class="menu-item-price">&pound;12.50</div>
+                <button class="btn-add-cart" data-name="Pepperoni Pizza" data-price="12.50">Add</button>
+            </div>
+            <div class="menu-item" data-category="kebab">
+                <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1561651823-34a0658ebc9d?w=200&q=80" alt="Chicken Kebab"></div>
+                <div class="menu-item-info"><h4>Chicken Kebab</h4><p>Grilled chicken with salad and special sauce.</p></div>
+                <div class="menu-item-price">&pound;9.50</div>
+                <button class="btn-add-cart" data-name="Chicken Kebab" data-price="9.50">Add</button>
+            </div>
+            <div class="menu-item" data-category="kebab">
+                <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&q=80" alt="Lamb Kebab"></div>
+                <div class="menu-item-info"><h4>Lamb Kebab</h4><p>Tender lamb with herbs and spices.</p></div>
+                <div class="menu-item-price">&pound;10.50</div>
+                <button class="btn-add-cart" data-name="Lamb Kebab" data-price="10.50">Add</button>
+            </div>
+            <div class="menu-item" data-category="pasta">
+                <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=200&q=80" alt="Carbonara Pasta"></div>
+                <div class="menu-item-info"><h4>Carbonara Pasta</h4><p>Creamy parmesan sauce with pancetta.</p></div>
+                <div class="menu-item-price">&pound;13.99</div>
+                <button class="btn-add-cart" data-name="Carbonara Pasta" data-price="13.99">Add</button>
+            </div>
+            <div class="menu-item" data-category="pasta">
+                <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=200&q=80" alt="Bolognese Pasta"></div>
+                <div class="menu-item-info"><h4>Bolognese Pasta</h4><p>Rich meat sauce with fresh pasta.</p></div>
+                <div class="menu-item-price">&pound;12.99</div>
+                <button class="btn-add-cart" data-name="Bolognese Pasta" data-price="12.99">Add</button>
+            </div>
+        </div>
+        <div class="menu-view-all"><a href="menu.html" class="btn-view-all">View Full Menu</a></div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-us" id="why-us">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Why Choose Us</span>
+            <h2 class="section-title">Quality Food, <em>Great Experience</em></h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><h3>Fresh Ingredients</h3><p>We use the freshest ingredients in town.</p></div>
+            <div class="feature-card"><div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>Fast Delivery</h3><p>Quick delivery at your doorstep.</p></div>
+            <div class="feature-card"><div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><h3>Italian Recipes</h3><p>Authentic recipes from Italian tradition.</p></div>
+            <div class="feature-card"><div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3>Expert Chefs</h3><p>Professional chefs with years of experience.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery" id="gallery">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Our Gallery</span>
+            <h2 class="section-title">A Glimpse Of Our <em>Kitchen</em></h2>
+        </div>
+    </div>
+    <div class="gallery-grid">
+        <div class="gallery-item large"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Pizza" loading="lazy"><div class="gallery-caption"><span>Fresh Pizza</span></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80" alt="Chef" loading="lazy"><div class="gallery-caption"><span>Our Chefs</span></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" alt="Pasta" loading="lazy"><div class="gallery-caption"><span>Fresh Pasta</span></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80" alt="Restaurant" loading="lazy"><div class="gallery-caption"><span>Dining Area</span></div></div>
+        <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="Plating" loading="lazy"><div class="gallery-caption"><span>Plating Art</span></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&q=80" alt="Dessert" loading="lazy"><div class="gallery-caption"><span>Sweet Finish</span></div></div>
+    </div>
+    <div class="gallery-cta"><a href="#" class="btn-view-gallery">View More Photos</a></div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews" id="reviews">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Customer Reviews</span>
+            <h2 class="section-title">What Our <em>Customers</em> Say</h2>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="James Wilson" class="review-avatar">
+                    <div class="review-meta"><span class="review-name">James Wilson</span><div class="review-stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div></div>
+                </div>
+                <p class="review-text">"Best pizza I've had in a long time! Fresh ingredients and amazing taste."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Sarah Khan" class="review-avatar">
+                    <div class="review-meta"><span class="review-name">Sarah Khan</span><div class="review-stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div></div>
+                </div>
+                <p class="review-text">"Kebabs are juicy, perfectly cooked and full of flavour. Highly recommended!"</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Daniel Roberts" class="review-avatar">
+                    <div class="review-meta"><span class="review-name">Daniel Roberts</span><div class="review-stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div></div>
+                </div>
+                <p class="review-text">"Lovely pasta and fast delivery. Will definitely order again!"</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA / Order Banner -->
+<section class="cta-section" id="cta">
+    <div class="cta-bg">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1920&q=80" alt="Pizza" loading="lazy">
+        <div class="cta-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="cta-content">
+            <span class="cta-label">Hungry?</span>
+            <h2 class="cta-title">Order Your Favourite <em>Meal Today!</em></h2>
+            <p class="cta-desc">Fast Delivery &middot; Fresh Ingredients &middot; Great Taste</p>
+            <a href="menu.html" class="btn-cta">Order Online Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Delivery Section -->
+<section class="delivery" id="delivery">
+    <div class="container">
+        <div class="delivery-grid">
+            <div class="delivery-content">
+                <div class="section-header left">
+                    <span class="section-label">Delivery</span>
+                    <h2 class="section-title">Fast &amp; <em>Reliable</em> Delivery</h2>
+                </div>
+                <p class="delivery-text">We deliver your favourite food hot and fresh to your doorstep. Our delivery team ensures your meal arrives in perfect condition, every time.</p>
+                <div class="delivery-features">
+                    <div class="delivery-feature"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>45 min average delivery</span></div>
+                    <div class="delivery-feature"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Free delivery over &pound;20</span></div>
+                    <div class="delivery-feature"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Real-time tracking</span></div>
+                </div>
+            </div>
+            <div class="delivery-image"><img src="https://images.unsplash.com/photo-1526367790999-015075668a5a?w=600&q=80" alt="Delivery" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Contact Us</span>
+            <h2 class="section-title">We're Here To <em>Serve You</em></h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info-card">
+                <div class="contact-item">
+                    <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <div class="contact-text"><span class="contact-label">Address</span><span class="contact-value">123 High Street, London, UK, E1 6AN</span></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+                    <div class="contact-text"><span class="contact-label">Phone</span><span class="contact-value">+44 20 1234 5678</span></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg></div>
+                    <div class="contact-text"><span class="contact-label">Email</span><span class="contact-value">info@italianpizzahub.co.uk</span></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div class="contact-text"><span class="contact-label">Opening Hours</span><span class="contact-value">Mon - Sun: 11:00 AM - 11:00 PM</span></div>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.927!2d-0.072!3d51.515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzU0LjAiTiAwwrAwNCcxOS4yIlc!5e0!3m2!1sen!2suk!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#hero" class="footer-logo"><span class="logo-italian">Italian</span><span class="logo-hub">Pizza Hub</span></a>
+                <p class="footer-desc">Authentic Italian Pizza, Kebab &amp; Pasta. Serving London since 2014.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-links-group">
+                <h4>Quick Links</h4>
+                <ul><li><a href="#hero">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li></ul>
+            </div>
+            <div class="footer-links-group">
+                <h4>Information</h4>
+                <ul><li><a href="#">Delivery Information</a></li><li><a href="#">Terms &amp; Conditions</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li><li><a href="#">FAQs</a></li></ul>
+            </div>
+            <div class="footer-links-group">
+                <h4>Contact</h4>
+                <ul><li>123 High Street, London</li><li>+44 20 1234 5678</li><li>info@italianpizzahub.co.uk</li></ul>
+                <div class="payment-icons">
+                    <span class="payment-icon">VISA</span>
+                    <span class="payment-icon">MC</span>
+                    <span class="payment-icon">AMEX</span>
+                    <span class="payment-icon">PP</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Italian Pizza Hub. All Rights Reserved.</p></div>
+    </div>
+</footer>
+
+<!-- Floating Order Button -->
+<a href="menu.html" class="floating-order" id="floatingOrder">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span>Order Now</span>
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+    <div class="toast-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+    <div class="toast-content"><span class="toast-title">Added to Cart</span><span class="toast-message" id="toastMessage">Item added successfully</span></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

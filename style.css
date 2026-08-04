@@ -2838,3 +2838,10 @@ ul {
   position: relative;
   z-index: 1;
 }
+
+/* Ensure sections are visible even if GSAP fails */
+.review-card,
+.feature-card {
+  opacity: 1 !important;
+  transform: none !important;
+}
